@@ -1,0 +1,662 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pred B-Raphaa - Aviator</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Montserrat:wght@600;700;800;900&family=Poppins:wght@500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: #0b0c10;
+            color: #ffffff;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 1rem;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        body::before {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at 50% 50%, rgba(251, 191, 36, 0.03) 0%, transparent 50%);
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .container {
+            max-width: 400px;
+            width: 100%;
+            position: relative;
+            z-index: 1;
+        }
+
+        .header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0.75rem 0;
+            margin-bottom: 0.5rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            background: rgba(10, 10, 15, 0.3);
+            padding: 0.5rem 1rem;
+        }
+
+        .header-left {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .logo-small {
+            width: 36px;
+            height: 36px;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 80"><path fill="%23fbbf24" d="M40 10L50 35H25L35 10Z"/><text x="70" y="30" font-family="Arial" font-size="16" fill="%23ffffff" font-weight="bold">REALMADRID</text><text x="100" y="55" font-family="Arial" font-size="14" fill="%23fbbf24" font-weight="bold">HALA MADRID</text></svg>') no-repeat center center;
+            background-size: contain;
+        }
+
+        .header h1 {
+            color: #fbbf24;
+            font-size: 1.1rem;
+            font-family: 'Poppins', sans-serif;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            background: linear-gradient(135deg, #fbbf24, #fcd34d);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .header p {
+            color: #94a3b8;
+            font-size: 0.65rem;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+        }
+
+        .title-section {
+            text-align: center;
+            margin: 0.5rem 0 0.5rem 0;
+        }
+
+        .title-section h1 {
+            color: #fbbf24;
+            font-size: 2.2rem;
+            font-family: 'Poppins', sans-serif;
+            font-weight: 800;
+            letter-spacing: -0.02em;
+            background: linear-gradient(135deg, #fbbf24, #fde68a);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-shadow: 0 0 30px rgba(251, 191, 36, 0.3);
+            line-height: 1.2;
+        }
+
+        .title-section p {
+            color: #64748b;
+            font-size: 0.9rem;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            letter-spacing: 0.3em;
+            text-transform: uppercase;
+            margin-top: 0.25rem;
+        }
+
+        .realmadrid-text {
+            text-align: center;
+            margin: 0.25rem 0 1rem 0;
+            padding: 0.5rem;
+            background: rgba(251, 191, 36, 0.03);
+            border: 1px solid rgba(251, 191, 36, 0.1);
+        }
+
+        .realmadrid-text .main {
+            color: #ffffff;
+            font-size: 1.1rem;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 800;
+            letter-spacing: 0.15em;
+        }
+
+        .realmadrid-text .hala {
+            color: #fbbf24;
+            font-size: 0.9rem;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            letter-spacing: 0.2em;
+            margin-top: 0.1rem;
+        }
+
+        .card {
+            background: rgba(18, 20, 25, 0.8);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(251, 191, 36, 0.08);
+            padding: 1.5rem;
+            margin-bottom: 1rem;
+            box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.6);
+        }
+
+        .card-title {
+            color: #fbbf24;
+            font-size: 0.8rem;
+            margin-bottom: 1.25rem;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 800;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .card-title::before {
+            content: '';
+            width: 20px;
+            height: 2px;
+            background: #fbbf24;
+        }
+
+        .input-group {
+            margin-bottom: 1.25rem;
+        }
+
+        .input-group label {
+            display: flex;
+            align-items: center;
+            gap: 0.35rem;
+            color: #94a3b8;
+            font-size: 0.7rem;
+            margin-bottom: 0.4rem;
+            font-family: 'Inter', sans-serif;
+            font-weight: 600;
+            letter-spacing: 0.03em;
+        }
+
+        .input-group input {
+            width: 100%;
+            background: rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            padding: 0.9rem 1.2rem;
+            color: #ffffff;
+            font-size: 1rem;
+            font-family: 'JetBrains Mono', 'Inter', monospace;
+            transition: all 0.2s ease;
+            box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.3);
+            font-weight: 500;
+        }
+
+        .input-group input:focus {
+            outline: none;
+            border-color: #fbbf24;
+            box-shadow: 0 0 0 3px rgba(251, 191, 36, 0.1), inset 0 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .input-group input::placeholder {
+            color: #475569;
+            font-size: 0.9rem;
+            font-family: 'Inter', sans-serif;
+            font-weight: 400;
+        }
+
+        button {
+            width: 100%;
+            background: linear-gradient(135deg, #fbbf24, #f59e0b);
+            color: #0b0c10;
+            border: none;
+            padding: 1rem;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 800;
+            font-size: 1rem;
+            cursor: pointer;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            box-shadow: 0 10px 20px -8px rgba(251, 191, 36, 0.3);
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            transform: translateY(0);
+            will-change: transform, box-shadow;
+        }
+
+        button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            transition: left 0.5s ease;
+        }
+
+        button:hover::before {
+            left: 100%;
+        }
+
+        button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 20px 30px -8px rgba(251, 191, 36, 0.5);
+            background: linear-gradient(135deg, #fcd34d, #fbbf24);
+        }
+
+        button:active {
+            transform: translateY(2px) scale(0.98);
+            box-shadow: 0 5px 15px -5px rgba(251, 191, 36, 0.4);
+            transition: all 0.1s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        button::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.4);
+            transform: translate(-50%, -50%);
+            transition: width 0.4s ease-out, height 0.4s ease-out, opacity 0.4s ease-out;
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        button:active::after {
+            width: 300px;
+            height: 300px;
+            opacity: 1;
+            transition: width 0.2s ease-out, height 0.2s ease-out, opacity 0.2s ease-out;
+        }
+
+        .error {
+            color: #ef4444;
+            font-size: 0.8rem;
+            text-align: center;
+            margin-top: 0.75rem;
+            font-family: 'Inter', sans-serif;
+            font-weight: 600;
+            background: rgba(239, 68, 68, 0.1);
+            padding: 0.5rem;
+            border: 1px solid rgba(239, 68, 68, 0.2);
+        }
+
+        .result {
+            margin-top: 1.5rem;
+            padding: 1.5rem;
+            background: rgba(251, 191, 36, 0.03);
+            border: 1px solid rgba(251, 191, 36, 0.15);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .result::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, #fbbf24, transparent);
+        }
+
+        .result p {
+            color: #94a3b8;
+            font-size: 0.75rem;
+            margin-bottom: 0.5rem;
+            font-family: 'Inter', sans-serif;
+            font-weight: 600;
+            letter-spacing: 0.2em;
+        }
+
+        .result h2 {
+            color: #fbbf24;
+            font-size: 3rem;
+            font-family: 'JetBrains Mono', 'Inter', monospace;
+            font-weight: 800;
+            text-shadow: 0 0 30px rgba(251, 191, 36, 0.5);
+            line-height: 1.2;
+        }
+
+        .history {
+            background: rgba(18, 20, 25, 0.6);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.03);
+            padding: 1.25rem;
+            margin-top: 1rem;
+        }
+
+        .history-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 1rem;
+        }
+
+        .history-header h2 {
+            color: #fbbf24;
+            font-size: 0.8rem;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 800;
+            letter-spacing: 0.15em;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .history-header button {
+            width: auto;
+            background: rgba(255, 255, 255, 0.03);
+            color: #94a3b8;
+            padding: 0.4rem 1rem;
+            font-size: 0.7rem;
+            font-family: 'Inter', sans-serif;
+            font-weight: 600;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            box-shadow: none;
+            transition: all 0.2s ease;
+        }
+
+        .history-header button:hover {
+            background: rgba(239, 68, 68, 0.1);
+            color: #ef4444;
+            border-color: rgba(239, 68, 68, 0.3);
+            transform: translateY(-1px);
+        }
+
+        .history-header button:active {
+            transform: translateY(1px) scale(0.98);
+        }
+
+        .history-list {
+            max-height: 220px;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .history-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: rgba(0, 0, 0, 0.2);
+            padding: 0.7rem 1rem;
+            border: 1px solid rgba(251, 191, 36, 0.08);
+            transition: all 0.2s ease;
+        }
+
+        .history-item:hover {
+            border-color: rgba(251, 191, 36, 0.2);
+            background: rgba(251, 191, 36, 0.02);
+            transform: translateX(2px);
+        }
+
+        .history-item-left span {
+            color: #e2e8f0;
+            font-size: 0.8rem;
+            font-family: 'Inter', sans-serif;
+            font-weight: 600;
+        }
+
+        .history-item-left p {
+            color: #64748b;
+            font-family: 'JetBrains Mono', 'Inter', monospace;
+            font-size: 0.65rem;
+            max-width: 150px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            margin-top: 0.15rem;
+            font-weight: 500;
+        }
+
+        .history-item-right {
+            color: #fbbf24;
+            font-weight: 800;
+            font-size: 1rem;
+            font-family: 'JetBrains Mono', 'Inter', monospace;
+            background: rgba(251, 191, 36, 0.1);
+            padding: 0.25rem 0.75rem;
+            border: 1px solid rgba(251, 191, 36, 0.15);
+        }
+
+        .hidden {
+            display: none !important;
+        }
+
+        .history-list::-webkit-scrollbar {
+            width: 4px;
+        }
+
+        .history-list::-webkit-scrollbar-track {
+            background: rgba(255, 255, 255, 0.02);
+        }
+
+        .history-list::-webkit-scrollbar-thumb {
+            background: #fbbf24;
+        }
+    </style>
+</head>
+<body>
+    <div id="mainPage" class="container">
+        <div class="header">
+            <div class="header-left">
+                <div class="logo-small"></div>
+                <div>
+                    <h1>Pred B-Raphaa</h1>
+                    <p>Aviator</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="title-section">
+            <h1>Pred B-Raphaa</h1>
+            <p>Aviator</p>
+        </div>
+
+        <div class="realmadrid-text">
+            <div class="main">Real Madrid</div>
+            <div class="hala">Hala Madrid</div>
+        </div>
+
+        <div class="card">
+            <div class="card-title">PRÉDICTION</div>
+            
+            <div class="input-group">
+                <label>⏱️ HEURE DE DÉPART (H:M:S)</label>
+                <input type="text" id="startTime" placeholder="12:00 ou 1:30:45" value="41:00">
+            </div>
+
+            <div class="input-group">
+                <label>✖️ MULTIPLICATEUR</label>
+                <input type="text" id="multiplier" placeholder="2.45" value="2.20">
+            </div>
+
+            <div class="input-group">
+                <label>🔢 HEXADÉCIMAL</label>
+                <input type="text" id="hex" placeholder="34576184" value="892976">
+            </div>
+
+            <button onclick="calculate()">CALCULER</button>
+            <div id="calcError" class="error"></div>
+            
+            <div id="result" class="result" style="display: none;">
+                <p>RÉSULTAT</p>
+                <h2 id="resultTime">00:00:00</h2>
+            </div>
+        </div>
+
+        <div class="history">
+            <div class="history-header">
+                <h2>📜 HISTORIQUE</h2>
+                <button onclick="clearHistory()">EFFACER</button>
+            </div>
+            <div id="historyList" class="history-list"></div>
+        </div>
+    </div>
+
+    <script>
+        let history = [];
+
+        function hexToDec(hex) {
+            return parseInt(hex, 16);
+        }
+
+        function parseTime(timeStr) {
+            const parts = timeStr.split(':').map(Number);
+            if (parts.length === 2) {
+                return { hours: 0, minutes: parts[0], seconds: parts[1] };
+            } else if (parts.length === 3) {
+                return { hours: parts[0], minutes: parts[1], seconds: parts[2] };
+            } else {
+                return null;
+            }
+        }
+
+        function formatTime(hours, minutes, seconds) {
+            const pad = (n) => String(n).padStart(2, '0');
+            return `${pad(hours)}:${pad(minutes)}:${pad(seconds)}`;
+        }
+
+        function calculate() {
+            const startTime = document.getElementById('startTime').value;
+            const multiplier = document.getElementById('multiplier').value;
+            const hex = document.getElementById('hex').value.replace(/\s/g, '').toLowerCase();
+            const errorEl = document.getElementById('calcError');
+            const resultEl = document.getElementById('result');
+            const resultTimeEl = document.getElementById('resultTime');
+
+            errorEl.textContent = '';
+            
+            if (!startTime || !multiplier || !hex) {
+                errorEl.textContent = '❌ Veuillez remplir tous les champs';
+                return;
+            }
+
+            const parsed = parseTime(startTime);
+            if (!parsed) {
+                errorEl.textContent = '❌ Format heure invalide (utilisez H:M:S ou MM:SS)';
+                return;
+            }
+
+            const mult = parseFloat(multiplier.replace(',', '.'));
+            if (isNaN(mult)) {
+                errorEl.textContent = '❌ Multiplicateur invalide';
+                return;
+            }
+
+            if (hex.length === 0) {
+                errorEl.textContent = '❌ Hexadécimal vide';
+                return;
+            }
+
+            const intPart = Math.floor(mult);
+            const decimalStr = multiplier.replace(',', '.').split('.')[1] || '00';
+            const decPadded = decimalStr.padEnd(2, '0').slice(0, 2);
+            
+            const dec1 = parseInt(decPadded[0], 10);
+            const dec2 = parseInt(decPadded[1], 10);
+
+            if (intPart < 1 || intPart > hex.length) {
+                errorEl.textContent = '❌ Prediction indisponible, trouve une nouvelle référence';
+                return;
+            }
+            if (dec1 !== 0 && (dec1 < 1 || dec1 > hex.length)) {
+                errorEl.textContent = '❌ Prediction indisponible, trouve une nouvelle référence';
+                return;
+            }
+            if (dec2 !== 0 && (dec2 < 1 || dec2 > hex.length)) {
+                errorEl.textContent = '❌ Prediction indisponible, trouve une nouvelle référence';
+                return;
+            }
+
+            // Récupération des valeurs hexadécimales (0 si l'indice est 0)
+            const val1 = hexToDec(hex[intPart - 1]);
+            const val2 = dec1 === 0 ? 0 : hexToDec(hex[dec1 - 1]);
+            const val3 = dec2 === 0 ? 0 : hexToDec(hex[dec2 - 1]);
+            
+            let minutes = val1;
+            let seconds = parseInt(`${val2}${val3}`, 10);
+
+            if (seconds >= 60) {
+                minutes += Math.floor(seconds / 60);
+                seconds = seconds % 60;
+            }
+
+            let totalH = parsed.hours;
+            let totalM = parsed.minutes + minutes;
+            let totalS = parsed.seconds + seconds;
+
+            if (totalS >= 60) {
+                totalM += Math.floor(totalS / 60);
+                totalS = totalS % 60;
+            }
+            if (totalM >= 60) {
+                totalH += Math.floor(totalM / 60);
+                totalM = totalM % 60;
+            }
+
+            const result = formatTime(totalH, totalM, totalS);
+            resultTimeEl.textContent = result;
+            resultEl.style.display = 'block';
+
+            const historyItem = {
+                id: Date.now(),
+                startTime: startTime,
+                multiplier: multiplier,
+                hex: hex,
+                result: result
+            };
+            history.unshift(historyItem);
+            
+            if (history.length > 15) {
+                history = history.slice(0, 15);
+            }
+            
+            displayHistory();
+        }
+
+        function clearHistory() {
+            if (confirm('Effacer tout l\'historique ?')) {
+                history = [];
+                displayHistory();
+            }
+        }
+
+        function displayHistory() {
+            const historyList = document.getElementById('historyList');
+
+            if (history.length === 0) {
+                historyList.innerHTML = '<div style="text-align: center; color: #64748b; padding: 1rem; font-family: Inter; font-weight: 500;">Aucun calcul</div>';
+                return;
+            }
+
+            historyList.innerHTML = history.map(item => `
+                <div class="history-item">
+                    <div class="history-item-left">
+                        <span>${item.startTime} × ${item.multiplier}</span>
+                        <p>${item.hex}</p>
+                    </div>
+                    <div class="history-item-right">${item.result}</div>
+                </div>
+            `).join('');
+        }
+    </script>
+</body>
+</html>
